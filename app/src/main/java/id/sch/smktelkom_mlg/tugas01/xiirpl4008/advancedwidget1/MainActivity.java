@@ -16,15 +16,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout llMain = (LinearLayout) findViewById(R.id.linearLayoutMain);
-        final EditText etNama = new EditText(this);
+        final LinearLayout llMain = (LinearLayout) findViewById(R.id.linearLayoutMain);
+        /*final EditText etNama = new EditText(this);
         llMain.addView(etNama);
         etNama.setHint("Isikan Nama Anak");
 
         final EditText etUmur = new EditText(this);
         llMain.addView(etUmur);
         etUmur.setHint("Isikan Umur Anak");
-        etUmur.setInputType(InputType.TYPE_CLASS_NUMBER);
+        etUmur.setInputType(InputType.TYPE_CLASS_NUMBER);*/
+
+        addEditText(llMain);
 
         Button bProses = new Button(this);
         bProses.setText("Proses");
@@ -35,15 +37,27 @@ public class MainActivity extends AppCompatActivity {
         bProses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nama = etNama.getText().toString();
-                String umur = etUmur.getText().toString();
-                tvHasil.setText(nama + " umur " + umur + " tahun");
+                doProses(llMain);
             }
         });
 
     }
 
-    /*private void doProses(LinearLayout llMain) {
+    private void addEditText(LinearLayout llMain) {
+        for (int i = 1; i <= 5; i++) {
+            final EditText etNama = new EditText(this);
+            llMain.addView(etNama);
+            etNama.setHint("Isikan Nama Anak ke- " + i);
+
+            final EditText etUmur = new EditText(this);
+            llMain.addView(etUmur);
+            etUmur.setHint("Isikan Umur Anak ke- " + i);
+            etUmur.setInputType(InputType.TYPE_CLASS_NUMBER);
+        }
+    }
+
+
+    private void doProses(LinearLayout llMain) {
         String hasil = "";
         for (int i = 0; i < 5; i++) {
             EditText etNama = (EditText) llMain.getChildAt(i * 2);
@@ -60,5 +74,5 @@ public class MainActivity extends AppCompatActivity {
         }
         TextView tvHasil = (TextView) llMain.getChildAt(11);
         tvHasil.setText(hasil);
-    }*/
+    }
 }
